@@ -1,17 +1,17 @@
 {
-    "name": "jackbayliss/livewire-select2",
+    "name": "curtsheller/livewire-select2",
     "description": "Simple to use Livewire component for Select2",
     "keywords": [
-        "JackBayliss",
+        "CurtSheller",
         "laravel",
         "livewire-select2"
     ],
-    "homepage": "https://github.com/jackbayliss/livewire-select2",
+    "homepage": "https://github.com/curtsheller/livewire-select2",
     "license": "MIT",
     "authors": [
         {
-            "name": "Jack Bayliss",
-            "email": "jjbdev@proton.me",
+            "name": "Curt Sheller",
+            "email": "curt@curtsheller.com",
             "role": "Developer"
         }
     ],
@@ -73,10 +73,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "JackBayliss\\LivewireSelect2\\LivewireSelect2ServiceProvider"
+                "CurtSheller\\LivewireSelect2\\LivewireSelect2ServiceProvider"
             ],
             "aliases": {
-                "LivewireSelect2": "JackBayliss\\LivewireSelect2\\Facades\\LivewireSelect2"
+                "LivewireSelect2": "CurtSheller\\LivewireSelect2\\Facades\\LivewireSelect2"
             }
         }
     },

@@ -1,6 +1,6 @@
 <?php
 
-namespace JackBayliss\LivewireSelect2;
+namespace CurtSheller\LivewireSelect2;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;

@@ -1,10 +1,10 @@
 <?php
 
-namespace JackBayliss\LivewireSelect2\Components;
+namespace CurtSheller\LivewireSelect2\Components;
 
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use JackBayliss\LivewireSelect2\Exceptions\NoAttributeException;
+use CurtSheller\LivewireSelect2\Exceptions\NoAttributeException;
 use Livewire\Component;
 
 class Select2Component extends Component
