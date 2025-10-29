@@ -1,11 +1,10 @@
 # Simple to use Livewire component for Select2
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/jackbayliss/livewire-select2.svg?style=flat-square)](https://packagist.org/packages/jackbayliss/livewire-select2)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/jackbayliss/livewire-select2/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/jackbayliss/livewire-select2/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jackbayliss/livewire-select2/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/jackbayliss/livewire-select2/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/jackbayliss/livewire-select2.svg?style=flat-square)](https://packagist.org/packages/jackbayliss/livewire-select2)
+This is a fork of [jackbayliss/livewire-select2](https://github.com/jackbayliss/livewire-select2)
 
 Easy to use Livewire component specifically for Select2. 
+
+Added is the ability to add additional options using a `config file: config/livewire-select2`
 
 Supports: 
 - Laravel 10
@@ -20,16 +19,19 @@ This currently works on Livewire v3
 I haven't tested 2 yet. Let me know?!
 
 ```bash
-composer require jackbayliss/livewire-select2
+composer require curtsheller/livewire-select2
 ```
 ## Initial Setup
-First of all, ensure you install jQuery, and select2- for example, the below. You can also install these via npm and import it into your app.js. 
+First of all, ensure you install jQuery, and select2- for example, the below. You can also install these via npm and import it into your app.js.
+
 Main thing is ensuring the scripts are included anywhere you want select2 to work.
+
 ```html
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 ```
+
 ## Usage
 The package is quite straight forward, and can be used directly in a **LIVEWIRE** component, see below the basic usage
 ```html
@@ -44,10 +46,13 @@ public $vehicles = ['Ford','Vauxhall','Seat'];
 ```
 
 #### onchange (required) - string
+
 The select2 component expects a string of the listener function to call. For example, `triggerMyFunction`- you can see how to do this below.
 The onchange function, expects one param. The param returned from this component is an array of data - which includes the following:
+
 ##### Name - The name param you passed in, this can be used in your custom function if required - this is null if not supplied.
 ##### Data - This is the values returned from the select2 change, if you have not set the multiple param, this is a string- otherwise its an array. Please see https://github.com/jackbayliss/livewire-select2?tab=readme-ov-file#base-component if theres any confusion.
+
 > [!IMPORTANT]  
 > Ensure your function includes one parameter, for example `triggerMyFunction($select2)`
 

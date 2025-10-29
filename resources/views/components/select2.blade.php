@@ -8,8 +8,6 @@
     </select>
 </div>
 
-
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         prepareSelect2()
@@ -18,10 +16,68 @@
         })
 
         function prepareSelect2(){
-            $('.select2-{{$this->id}}').select2().on('change', function(e) {
-                var data = $(this).select2("val")
-                @this.select2Change(data)
-            })
+
+            @php
+                $config = config('livewire-select2', []);
+
+                // Use configurable options that we know work
+                $options = [
+                    'theme' => $config['theme'] ?? 'tailwindcss-4',
+                    'placeholder' => $config['placeholder'] ?? 'Select options...',
+                    'tags' => $config['tags'] ?? true,
+                    'tokenSeparators' => $config['token_separators'] ?? [',', ' '],
+                    'width' => $config['width'] ?? '100%',
+                ];
+
+                // Add allowClear if configured
+                if (isset($config['allow_clear'])) {
+                    $options['allowClear'] = $config['allow_clear'];
+                }
+
+                if ($config['maximum_selection_length'] ?? 0 > 0) {
+                    $options['maximumSelectionLength'] = $config['maximum_selection_length'];
+                }
+
+                if (!empty($config['container_css_class'])) {
+                    $options['containerCssClass'] = $config['container_css_class'];
+                }
+
+                if (!empty($config['dropdown_css_class'])) {
+                    $options['dropdownCssClass'] = $config['dropdown_css_class'];
+                }
+            @endphp
+
+            try {
+                // Destroy existing select2 if it exists
+                if ($element.data('select2')) {
+                    $element.select2('destroy');
+                }
+
+                // Try with minimal options first
+                var finalOptions = {!! json_encode($options) !!};
+
+                $element.select2(finalOptions);
+
+                // Add change handler separately to isolate issues
+                $element.on('select2:select select2:unselect', function(e) {
+                    var data = $(this).val();
+                    if (typeof @this.select2Change === 'function') {
+                        @this.select2Change(data);
+                    } else {
+                    }
+                });
+
+            } catch (error) {
+
+                // Try with absolutely minimal options as fallback
+                try {
+                    $element.select2({
+                        placeholder: 'Select an option...',
+                        width: '100%'
+                    });
+                } catch (fallbackError) {
+                }
+            }
         }
     })
 </script>

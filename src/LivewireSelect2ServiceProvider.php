@@ -28,5 +28,10 @@ class LivewireSelect2ServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'livewire-select2');
+
+        // Publish config file
+        $this->publishes([
+            __DIR__.'/../config/livewire-select2.php' => config_path('livewire-select2.php'),
+        ], 'livewire-select2-config');
     }
 }
