@@ -1,5 +1,3 @@
-
-
 <div wire:ignore>
     <select class="select2-{{$this->id}} {{$this->class ?? ''}}" @if($this->multiple) multiple="multiple" @endif >
         @foreach($this->options as $key => $option)
@@ -16,6 +14,20 @@
         })
 
         function prepareSelect2(){
+            // Check if jQuery and Select2 are available
+            if (typeof $ === 'undefined') {
+                return;
+            }
+
+            if (typeof $.fn.select2 === 'undefined') {
+                return;
+            }
+
+            var $element = $('.select2-{{$this->id}}');
+
+            if ($element.length === 0) {
+                return;
+            }
 
             @php
                 $config = config('livewire-select2', []);
@@ -53,7 +65,6 @@
                     $element.select2('destroy');
                 }
 
-                // Try with minimal options first
                 var finalOptions = {!! json_encode($options) !!};
 
                 $element.select2(finalOptions);
@@ -63,12 +74,10 @@
                     var data = $(this).val();
                     if (typeof @this.select2Change === 'function') {
                         @this.select2Change(data);
-                    } else {
                     }
                 });
 
             } catch (error) {
-
                 // Try with absolutely minimal options as fallback
                 try {
                     $element.select2({
@@ -76,6 +85,7 @@
                         width: '100%'
                     });
                 } catch (fallbackError) {
+                    // Silent fallback failure
                 }
             }
         }
