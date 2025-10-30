@@ -1,5 +1,5 @@
 <div wire:ignore>
-    <select class="select2-{{$this->id}} {{$this->class ?? ''}}" @if($this->multiple) multiple="multiple" @endif >
+    <select class="select2-{{$this->id}} {{$this->class ?? ''}}" style="visibility: hidden;" @if($this->multiple) multiple="multiple" @endif >
         @foreach($this->options as $key => $option)
             <option value="{{$key}}" @if($key == $this->model) selected @endif>{{$option}}</option>
         @endforeach
@@ -69,6 +69,9 @@
 
                 $element.select2(finalOptions);
 
+                // Show the element after Select2 is initialized
+                $element.css('visibility', 'visible');
+
                 // Add change handler separately to isolate issues
                 $element.on('select2:select select2:unselect', function(e) {
                     var data = $(this).val();
@@ -84,8 +87,11 @@
                         placeholder: 'Select an option...',
                         width: '100%'
                     });
+                    // Show the element even in fallback
+                    $element.css('visibility', 'visible');
                 } catch (fallbackError) {
-                    // Silent fallback failure
+                    // Show the unstyled element as last resort
+                    $element.css('visibility', 'visible');
                 }
             }
         }
